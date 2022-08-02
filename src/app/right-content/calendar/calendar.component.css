@@ -1,0 +1,11 @@
+.mc {
+    margin-top: 300px;
+    margin-left: 300px;
+}
+
+.scrollable {
+    overflow: scroll;
+    overflow-x: auto;
+    overflow-y: auto;
+    height: 44.8vmax;
+}
