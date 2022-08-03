@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarView } from 'angular-calendar';
+
+import { CalendarView, CalendarEvent  } from 'angular-calendar';
+import { endOfDay, startOfDay } from 'date-fns';
 
 @Component({
   selector: 'app-calendar',
@@ -11,6 +13,14 @@ export class CalendarComponent implements OnInit {
   viewDate: Date = new Date();
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
+
+  events: CalendarEvent[] = [
+    {
+      start: startOfDay(new Date()),
+      end: endOfDay(new Date()),
+      title: 'An event with no end date',
+    }
+  ]
 
   constructor() { }
 
@@ -26,6 +36,12 @@ export class CalendarComponent implements OnInit {
     let name = months[date.getMonth()];
     return name;
 
+  }
+
+
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    console.log(date);
+    //this.openAppointmentList(date)
   }
 
 }

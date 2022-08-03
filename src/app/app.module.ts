@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -10,6 +13,10 @@ import { LeftNavComponent } from './left-nav/left-nav.component';
 import { RightContentComponent } from './right-content/right-content.component';
 import { CalendarComponent } from './right-content/calendar/calendar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthentificationComponent } from './authentification/authentification.component';
+import { LoginComponent } from './authentification/login/login.component';
+import { SignUpComponent } from './authentification/sign-up/sign-up.component';
+import { EventsComponent } from './left-nav/events/events.component';
 
 
 @NgModule({
@@ -18,10 +25,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TopNavComponent,
     LeftNavComponent,
     RightContentComponent,
-    CalendarComponent
+    CalendarComponent,
+    AuthentificationComponent,
+    LoginComponent,
+    SignUpComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    FormsModule,
 
     CalendarModule.forRoot({
       provide: DateAdapter,
