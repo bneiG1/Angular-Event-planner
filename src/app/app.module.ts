@@ -17,6 +17,10 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { LoginComponent } from './authentification/login/login.component';
 import { SignUpComponent } from './authentification/sign-up/sign-up.component';
 import { EventsComponent } from './left-nav/events/events.component';
+import { AuthentificationService } from './authentification/authentification.service';
+import { DatabaseService } from './quote-DataBase-quote/qDATABASEq.service';
+import { LoginService } from './authentification/login/login.service';
+import { SignupService } from './authentification/sign-up/sign-up.service';
 
 
 @NgModule({
@@ -42,7 +46,7 @@ import { EventsComponent } from './left-nav/events/events.component';
     })
 
   ],
-  providers: [],
+  providers: [DatabaseService, AuthentificationService, LoginService, SignupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

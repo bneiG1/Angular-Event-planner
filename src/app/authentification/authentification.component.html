@@ -1,2 +1,4 @@
-<app-login></app-login>
-<app-sign-up></app-sign-up>
+<div *ngIf="isAuth==false">
+    <app-login *ngIf="login"></app-login>
+    <app-sign-up *ngIf="signup"></app-sign-up>
+</div>

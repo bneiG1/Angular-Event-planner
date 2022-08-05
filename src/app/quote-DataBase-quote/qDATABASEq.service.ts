@@ -1,5 +1,7 @@
+import { Injectable } from '@angular/core';
 import database from './db.json';
 
+@Injectable()
 export class DatabaseService{
 
   private dbJSON = JSON.stringify(database);

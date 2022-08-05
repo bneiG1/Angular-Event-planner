@@ -1,38 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthentificationService } from './authentification.service';
 
-import { DatabaseService } from '../quote-DataBase-quote/qDATABASEq.service';
 
 
 @Component({
   selector: 'app-authentification',
   templateUrl: './authentification.component.html',
-  styleUrls: ['./authentification.component.css'],
-  providers:[DatabaseService]
+  styleUrls: ['./authentification.component.css']
 })
 export class AuthentificationComponent implements OnInit {
 
-  isAuth: boolean = false;
-  users = this.database.getUsers();
+  isAuth= this.auth.isAuth;
 
-  // temporar
-  temp_username: string = "Doru Aleatoru";
-  temp_password: string = "12345";
+  login = this.auth.Login_pannel
+  signup = this.auth.Signup_pannel;
 
-  constructor(private database: DatabaseService ) { console.log(this.users[0].username);}
+
+  constructor(private auth: AuthentificationService) {
+    console.log(this.auth.Login_pannel);
+    this.auth.statusUpdated.subscribe((login:boolean) => login = this.auth.Login_pannel);
+    console.log(this.login) }
 
   ngOnInit(): void {
+    this.auth.statusUpdated.subscribe((login: boolean) => this.login = login);
   }
 
-  authUser(username: string, password: string){
-
-    for (let i = 0; i < this.users.length; i++) {
-      if(username == this.users[i].username && password == this.users[i].password){
-
-        this.isAuth = true;
-
-      }
-
-    }
-
-  }
 }
