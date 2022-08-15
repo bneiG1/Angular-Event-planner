@@ -17,7 +17,7 @@ export class TopNavComponent implements OnInit {
     this.auth.Login_pannel = !this.auth.Login_pannel;
     this.auth.Signup_pannel = false;
 
-    this.auth.statusUpdated.emit(this.auth.Login_pannel);
+    this.auth.loginStatusUpdated.emit(this.auth.Login_pannel);
 
     console.log(this.auth.Login_pannel);
 
@@ -28,7 +28,7 @@ export class TopNavComponent implements OnInit {
    this.auth.Signup_pannel = !this.auth.Signup_pannel;
    this.auth.Login_pannel = false;
 
-   this.auth.statusUpdated.emit(this.auth.Signup_pannel);
+   this.auth.signupStatusUpdated.emit(this.auth.Signup_pannel);
 
    console.log(this.auth.Signup_pannel);
 

@@ -6,7 +6,8 @@ export class AuthentificationService {
 
   isAuth: boolean = false;
 
-  statusUpdated = new EventEmitter<boolean>();
+  loginStatusUpdated = new EventEmitter<boolean>();
+  signupStatusUpdated = new EventEmitter<boolean>();
 
   Login_pannel: boolean = true;
   Signup_pannel: boolean = false;

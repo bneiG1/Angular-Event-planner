@@ -21,6 +21,7 @@ import { AuthentificationService } from './authentification/authentification.ser
 import { DatabaseService } from './quote-DataBase-quote/qDATABASEq.service';
 import { LoginService } from './authentification/login/login.service';
 import { SignupService } from './authentification/sign-up/sign-up.service';
+import { EventEditorComponent } from './left-nav/event-editor/event-editor.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { SignupService } from './authentification/sign-up/sign-up.service';
     AuthentificationComponent,
     LoginComponent,
     SignUpComponent,
-    EventsComponent
+    EventsComponent,
+    EventEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { SignupService } from './authentification/sign-up/sign-up.service';
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
-    })
+    }),
+      BrowserAnimationsModule
 
   ],
   providers: [DatabaseService, AuthentificationService, LoginService, SignupService],

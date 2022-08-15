@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from './authentification/authentification.service';
-import { LoginService } from './authentification/login/login.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +9,16 @@ import { LoginService } from './authentification/login/login.service';
 export class AppComponent implements OnInit{
 
   isAuth = this.auth.isAuth;
-  constructor(private auth: AuthentificationService, private login: LoginService) {
+  constructor(private auth: AuthentificationService) {
+
+    this.auth.loginStatusUpdated.subscribe((login:boolean) => login = this.auth.Login_pannel);
+    this.auth.signupStatusUpdated.subscribe((signup:boolean) => signup = this.auth.Signup_pannel);
   }
 
+
 ngOnInit(): void {
-  this.login.loginStatus.subscribe((isLogged_in: boolean) => this.isAuth = isLogged_in);
+  this.auth.loginStatusUpdated.subscribe((login:boolean) => login = this.auth.Login_pannel);
+  this.auth.signupStatusUpdated.subscribe((signup:boolean) => signup = this.auth.Signup_pannel);
 }
 
 }

@@ -5,6 +5,7 @@ import { DatabaseService } from '../../quote-DataBase-quote/qDATABASEq.service';
 export class LoginService {
 
   loginStatus = new EventEmitter<boolean>();
+  isAuthStatus = new EventEmitter<boolean>();
 
   constructor(private database: DatabaseService){}
 

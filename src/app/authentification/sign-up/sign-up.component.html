@@ -22,14 +22,8 @@
             <label for="floatingPassword">Repeat Password</label>
         </div>
 
-        <div class="checkbox mb-3">
-            <label>
-                <br>
-      <input type="checkbox" value="remember-me"> Remember me
-    </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="onClickSignup()">Sign in</button>
         <p class="text-center">OR</p>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="onClickLogin()">Login</button>
     </form>
 </div>
