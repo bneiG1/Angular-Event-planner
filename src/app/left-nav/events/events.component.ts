@@ -1,31 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DatabaseService } from 'src/app/quote-DataBase-quote/qDATABASEq.service';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { JsonServerService } from '../../json-server-service/json-server.service';
+import { UserEvent } from 'src/app/json-server-service/user-event';
+import { User } from 'src/app/json-server-service/user';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css'],
-  providers:[DatabaseService]
+  providers:[]
 })
 export class EventsComponent implements OnInit {
 
-  users = this.database.getUsers();
-  events = this.users[4].events;
+  events: UserEvent[] = [];
+  users: User[] = [];
 
-  // email = this.database.getUsersEmail();
-  // events = this.database.getUsersEvents();
-  // event_name = this.database.getUsersEventName();
-  // event_from = this.database.getUsersEventFrom();
-  // event_to = this.database.getUsersEventTo();
-  // event_reccurence = this.database.getUsersEventReccurence();
-  // event_day = this.database.getUsersEventDay();
-  // event_id = this.database.getUsersEventId();
-  // event_description = this.database.getUsersEventDescription();
-
-  constructor(private database: DatabaseService) { }
+  constructor(private json: JsonServerService) { }
 
   ngOnInit(): void {
+    this.json.getUsers().subscribe((user: User[]) => this.users = user);
   }
 
 }

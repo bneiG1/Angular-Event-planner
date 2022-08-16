@@ -13,26 +13,20 @@ export class TopNavComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onClickLogin(){
+  onClickLogout(){
     this.auth.Login_pannel = !this.auth.Login_pannel;
     this.auth.Signup_pannel = false;
+    this.auth.isAuth = false;
 
+    this.auth.isAuthStatusUpdated.emit(this.auth.isAuth);
     this.auth.loginStatusUpdated.emit(this.auth.Login_pannel);
+    this.auth.signupStatusUpdated.emit(this.auth.Signup_pannel);
 
-    console.log(this.auth.Login_pannel);
-
-    return  this.auth.Login_pannel;
+    console.log(" \n onClickLogout()");
+    console.log("Status isAuth: " + this.auth.isAuth);
+    console.log("Login: " + this.auth.Login_pannel);
+    console.log("Sign-up: " + this.auth.Signup_pannel);
   }
 
-  onClickSignup(){
-   this.auth.Signup_pannel = !this.auth.Signup_pannel;
-   this.auth.Login_pannel = false;
-
-   this.auth.signupStatusUpdated.emit(this.auth.Signup_pannel);
-
-   console.log(this.auth.Signup_pannel);
-
-   return  this.auth.Signup_pannel;
-  }
 
 }

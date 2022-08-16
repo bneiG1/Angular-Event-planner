@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -18,10 +19,10 @@ import { LoginComponent } from './authentification/login/login.component';
 import { SignUpComponent } from './authentification/sign-up/sign-up.component';
 import { EventsComponent } from './left-nav/events/events.component';
 import { AuthentificationService } from './authentification/authentification.service';
-import { DatabaseService } from './quote-DataBase-quote/qDATABASEq.service';
 import { LoginService } from './authentification/login/login.service';
 import { SignupService } from './authentification/sign-up/sign-up.service';
 import { EventEditorComponent } from './left-nav/event-editor/event-editor.component';
+import { JsonServerService } from './json-server-service/json-server.service';
 
 
 @NgModule({
@@ -35,12 +36,14 @@ import { EventEditorComponent } from './left-nav/event-editor/event-editor.compo
     LoginComponent,
     SignUpComponent,
     EventsComponent,
-    EventEditorComponent
+    EventEditorComponent,
+
   ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
+    HttpClientModule,
 
     CalendarModule.forRoot({
       provide: DateAdapter,
@@ -49,7 +52,8 @@ import { EventEditorComponent } from './left-nav/event-editor/event-editor.compo
       BrowserAnimationsModule
 
   ],
-  providers: [DatabaseService, AuthentificationService, LoginService, SignupService],
+
+  providers: [AuthentificationService, LoginService, SignupService, JsonServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

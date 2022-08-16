@@ -1,29 +1,30 @@
 <div>
-    <form>
+    <form (ngSubmit)="onClickSignup_signup(signup)" #signup="ngForm">
         <h1 class="h3 mb-3 fw-normal">Please Sign in</h1>
 
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Username">
+            <input type="text" class="form-control" placeholder="Username" id="username" name="username" ngModel required>
             <label for="floatingInput">Username</label>
         </div>
         <br>
         <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input type="email" class="form-control" placeholder="name@example.com" id="email" name="email" ngModel required>
             <label for="floatingInput">Email address</label>
         </div>
         <br>
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control" placeholder="Password" id="password" name="password" ngModel required>
             <label for="floatingPassword">Password</label>
         </div>
         <br>
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingPassword" placeholder="Repeat Password">
+            <input type="password" class="form-control" placeholder="Repeat Password" id="re_password" name="re_password" ngModel required>
             <label for="floatingPassword">Repeat Password</label>
         </div>
+        <br>
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="onClickSignup()">Sign in</button>
-        <p class="text-center">OR</p>
-        <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="onClickLogin()">Login</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <h2 class="text-center">OR</h2>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="onClickLogin_signup()">Login</button>
     </form>
 </div>

@@ -13,22 +13,20 @@ export class AuthentificationComponent implements OnInit {
   login = this.auth.Login_pannel
   signup = this.auth.Signup_pannel;
 
-  constructor(private auth: AuthentificationService) {
-    this.auth.loginStatusUpdated.subscribe((login:boolean) => login = this.auth.Login_pannel);
-    this.auth.signupStatusUpdated.subscribe((signup:boolean) => signup = this.auth.Signup_pannel);
-
-    console.log("Change: login " + this.login);
-    console.log("Change: signup " + this.signup);
-  }
+  constructor(private auth: AuthentificationService) {}
 
   ngOnInit(): void {
+
+    this.auth.isAuthStatusUpdated.subscribe((isAuth: boolean) => this.isAuth = isAuth);
     this.auth.loginStatusUpdated.subscribe((login: boolean) => this.login = login);
     this.auth.signupStatusUpdated.subscribe((signup: boolean) => this.signup = signup);
 
-    console.log("Change: login " + this.login);
-    console.log("Change: signup " + this.signup);
+    console.log(" \n AuthentificationComponent");
+    console.log("Status isAuth: " + this.auth.isAuth);
+    console.log("Login: " + this.auth.Login_pannel);
+    console.log("Sign-up: " + this.auth.Signup_pannel);
+
+
+
   }
-
-
-
 }

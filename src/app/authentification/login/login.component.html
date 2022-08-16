@@ -1,28 +1,28 @@
 <div>
-    <form>
+    <form (ngSubmit)="onClickLogin_login(login)" #login="ngForm">
         <h1 class="h3 mb-3 fw-normal">Please Login</h1>
 
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingInput" placeholder="Username" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;"
-                autocomplete="off">
+                autocomplete="off" id="username" name="username" ngModel required>
             <label for="floatingInput">Username</label>
         </div>
 
         <br>
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingPassword" placeholder="Password" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;"
-                autocomplete="off">
+                autocomplete="off" id="password" name="password" ngModel required>
             <label for="floatingPassword">Password</label>
         </div>
 
         <div class="checkbox mb-3">
             <label>
                 <br>
-      <input type="checkbox" value="remember-me"> Remember me
+      <input type="checkbox" value="true" id="remember" name="remember" ngModel> Remember me
     </label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="onClickLogin()">Login</button>
-        <p class="text-center">OR</p>
-        <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="onClickSignup()">Sign-up</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        <h2 class="text-center">OR</h2>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="onClickSignup_login()">Sign-up</button>
     </form>
 </div>

@@ -1,0 +1,91 @@
+{
+    "users": [{
+            "id": 1,
+            "first_name": "Robert",
+            "last_name": "Schwartz",
+            "username": "user1",
+            "email": "rob23@gmail.com",
+            "password": "pass",
+
+            "events": [{
+                    "id": 10,
+                    "from": "09:00",
+                    "to": "14:00",
+                    "name": "Teems Meeting1",
+                    "reccurence": false,
+                    "day": "2022-05-22",
+                    "description": "Meeting1"
+                },
+                {
+                    "id": 11,
+                    "from": "09:00",
+                    "to": "14:00",
+                    "name": "Teems Meeting2",
+                    "reccurence": false,
+                    "day": "2022-05-23",
+                    "description": "Meeting2"
+                },
+                {
+                    "id": 13,
+                    "from": "09:00",
+                    "to": "14:00",
+                    "name": "Teems Meeting3",
+                    "reccurence": false,
+                    "day": "2022-05-24",
+                    "description": "Meeting3"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "first_name": "Lucy",
+            "last_name": "Ballmer",
+            "username": "user2",
+            "email": "lucyb56@gmail.com",
+            "password": "pass",
+
+            "events": [{}]
+
+
+        },
+        {
+            "id": 3,
+            "first_name": "Anna",
+            "last_name": "Smith",
+            "username": "user3",
+            "email": "annasmith23@gmail.com",
+            "password": "pass",
+
+            "events": [{}]
+        },
+        {
+            "id": 4,
+            "first_name": "Robert",
+            "last_name": "Brown",
+            "username": "user4",
+            "email": "bobbrown432@yahoo.com",
+            "password": "pass",
+
+            "events": [{}]
+        },
+        {
+            "id": 5,
+            "first_name": "Roger",
+            "last_name": "Bacon",
+            "username": "user5",
+            "email": "rogerbacon12@yahoo.com",
+            "password": "pass",
+
+            "events": [{
+                "id": 12,
+                "from": "09:00",
+                "to": "14:00",
+                "name": "Teems Meeting",
+                "reccurence": false,
+                "day": "2022-05-22",
+                "description": ""
+            }]
+
+        }
+    ]
+}

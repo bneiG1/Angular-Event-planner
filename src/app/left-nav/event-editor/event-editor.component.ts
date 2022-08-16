@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-event-editor',
@@ -12,7 +13,17 @@ export class EventEditorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit(form: NgForm){
+    const value = form.value;
+
+    const name = value.name;
+    const from = value.from;
+    const to = value.to;
+    const reccurence = value.reccurence;
+    const description = value.description;
+
+    console.log(name,from, to,reccurence, description );
+
 
   }
 

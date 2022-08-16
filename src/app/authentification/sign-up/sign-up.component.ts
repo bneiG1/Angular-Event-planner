@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { AuthentificationService } from '../authentification.service';
 import { LoginService } from '../login/login.service';
 import { SignupService } from './sign-up.service';
@@ -19,31 +20,44 @@ export class SignUpComponent implements OnInit {
     this.auth.signupStatusUpdated.subscribe((sign_up: boolean) => this.sign_up_status = sign_up);
   }
 
-  onClickLogin(){
+
+  onClickSignup_signup(form: NgForm){
+    const value = form.value;
+
+    const username = value.username;
+    const email = value.email;
+    const password = value.password;
+    const re_password = value.re_password;
+
+    console.log("username: " + username);
+    console.log("email: " + email);
+    console.log("password " + password);
+    console.log("re_password: " + re_password);
+
     this.auth.Login_pannel = !this.auth.Login_pannel;
     this.auth.Signup_pannel = false;
-    this.auth.isAuth = true;
 
     this.auth.loginStatusUpdated.emit(this.auth.Login_pannel);
     this.auth.signupStatusUpdated.emit(this.auth.Signup_pannel);
 
-    console.log("Login: " + this.auth.Login_pannel);
+    console.log(" \n onClickSignup_signup()");
     console.log("Status isAuth: " + this.auth.isAuth);
-
-    return this.auth.Login_pannel;
+    console.log("Login: " + this.auth.Login_pannel);
+    console.log("Sign-up: " + this.auth.Signup_pannel);
   }
 
-  onClickSignup(){
+  onClickLogin_signup(){
+
+
     this.auth.Login_pannel = !this.auth.Login_pannel;
     this.auth.Signup_pannel = false;
-    this.auth.isAuth = true;
 
     this.auth.loginStatusUpdated.emit(this.auth.Login_pannel);
     this.auth.signupStatusUpdated.emit(this.auth.Signup_pannel);
 
-    console.log("Login: " + this.auth.Login_pannel);
+    console.log(" \n onClickLogin_signup()");
     console.log("Status isAuth: " + this.auth.isAuth);
-
-    return this.auth.Login_pannel;
+    console.log("Login: " + this.auth.Login_pannel);
+    console.log("Sign-up: " + this.auth.Signup_pannel);
   }
 }
