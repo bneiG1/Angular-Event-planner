@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 
 
 @Injectable()
-export class LoginService {
+export class CalendarService {
 
   constructor(){}
+
+  ngOnInit(): void {
+  }
+
 }

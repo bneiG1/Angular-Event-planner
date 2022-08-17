@@ -9,29 +9,32 @@
 
             "events": [{
                     "id": 10,
-                    "from": "09:00",
-                    "to": "14:00",
+                    "from_date": "2022-05-22",
+                    "from_time": "09:00",
+                    "to_date": "2022-05-22",
+                    "to_time": "14:00",
                     "name": "Teems Meeting1",
                     "reccurence": false,
-                    "day": "2022-05-22",
                     "description": "Meeting1"
                 },
                 {
                     "id": 11,
-                    "from": "09:00",
-                    "to": "14:00",
+                    "from_date": "2022-05-23",
+                    "from_time": "09:00",
+                    "to_date": "2022-05-24",
+                    "to_time": "14:00",
                     "name": "Teems Meeting2",
                     "reccurence": false,
-                    "day": "2022-05-23",
                     "description": "Meeting2"
                 },
                 {
                     "id": 13,
-                    "from": "09:00",
-                    "to": "14:00",
+                    "from_date": "2022-05-25",
+                    "from_time": "09:00",
+                    "to_date": "2022-05-25",
+                    "to_time": "14:00",
                     "name": "Teems Meeting3",
                     "reccurence": false,
-                    "day": "2022-05-24",
                     "description": "Meeting3"
                 }
             ]
@@ -78,12 +81,13 @@
 
             "events": [{
                 "id": 12,
-                "from": "09:00",
-                "to": "14:00",
+                "from_date": "2022-05-22",
+                "from_time": "09:00",
+                "to_date": "2022-05-22",
+                "to_time": "14:00",
                 "name": "Teems Meeting",
                 "reccurence": false,
-                "day": "2022-05-22",
-                "description": ""
+                "description": "DA"
             }]
 
         }

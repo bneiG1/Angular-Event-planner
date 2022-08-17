@@ -1,6 +1,8 @@
-<div>
-    <form (ngSubmit)="onClickSignup_signup(signup)" #signup="ngForm">
-        <h1 class="h3 mb-3 fw-normal">Please Sign in</h1>
+<div class="container-fluid">
+    <form (ngSubmit)="onClickSignup_signup(signup)" #signup="ngForm" class="shadow p-3 bg-light rounded
+    position-absolute top-50 start-50 translate-middle
+    border border-2 p-2 border-opacity-10">
+        <h1 class="mb-3 fw-normal">Please Sign in</h1>
 
         <div class="form-floating">
             <input type="text" class="form-control" placeholder="Username" id="username" name="username" ngModel required>
@@ -8,7 +10,7 @@
         </div>
         <br>
         <div class="form-floating">
-            <input type="email" class="form-control" placeholder="name@example.com" id="email" name="email" ngModel required>
+            <input type="email" class="form-control" placeholder="name@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" id="email" name="email" ngModel required>
             <label for="floatingInput">Email address</label>
         </div>
         <br>
@@ -23,8 +25,8 @@
         </div>
         <br>
 
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <button class="w-100 btn btn-lg btn-primary">Sign in</button>
         <h2 class="text-center">OR</h2>
-        <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="onClickLogin_signup()">Login</button>
+        <button class="w-100 btn btn-lg btn-primary" routerLink="/login">Login</button>
     </form>
 </div>

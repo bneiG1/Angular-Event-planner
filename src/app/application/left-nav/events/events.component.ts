@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { JsonServerService } from '../../json-server-service/json-server.service';
+import { JsonServerService } from '../../../json-server-service/json-server.service';
 import { UserEvent } from 'src/app/json-server-service/user-event';
 import { User } from 'src/app/json-server-service/user';
 

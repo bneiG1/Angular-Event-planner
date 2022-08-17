@@ -1,0 +1,20 @@
+<form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <label class="form-label">Name of the event: </label><br>
+    <input class="form-control" type="text" id="name" name="name" ngModel required><br>
+
+    <label class="form-label">Start from: </label><br>
+    <input class="form-control" type="date" id="from_date" name="from_date" ngModel required><br>
+    <input class="form-control" type="time" id="from_time" name="from_time" ngModel required><br>
+
+    <label class="form-label">End in: </label><br>
+    <input class="form-control" type="date" id="to_date" name="to_date" ngModel required><br>
+    <input class="form-control" type="time" id="to_time" name="to_time" ngModel required><br>
+
+    <input class="form-check-input" type="checkbox" id="reccurence" name="reccurence" value="true" ngModel>
+    <label class="form-check-label" for="reccurence"> Recurence </label><br>
+
+    <label>Description: </label><br>
+    <textarea class="form-control" id="description" name="description" required ngModel></textarea><br>
+
+    <button class="btn btn-success" type="submit">Submit</button>
+</form>

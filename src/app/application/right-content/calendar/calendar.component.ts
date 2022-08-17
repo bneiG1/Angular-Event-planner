@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { CalendarView, CalendarEvent  } from 'angular-calendar';
 import { endOfDay, startOfDay, startOfHour } from 'date-fns';
+import { JsonServerService } from '../../../json-server-service/json-server.service';
+import { User } from '../../../json-server-service/user';
+import { CalendarService } from './calendar.service';
 
 @Component({
   selector: 'app-calendar',
@@ -9,6 +12,8 @@ import { endOfDay, startOfDay, startOfHour } from 'date-fns';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
+
+  users: User[] = [];
 
   viewDate: Date = new Date();
   view: CalendarView = CalendarView.Month;
@@ -38,7 +43,9 @@ export class CalendarComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(private json: JsonServerService, private calender: CalendarService) {
+    this.json.getUsers().subscribe((user: User[]) => this.users = user);
+   }
 
   ngOnInit(): void {
   }
@@ -46,6 +53,7 @@ export class CalendarComponent implements OnInit {
   setView(view: CalendarView) {
     this.view = view;
   }
+
   nameMonth(){
     const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     const date = this.viewDate;
@@ -57,6 +65,7 @@ export class CalendarComponent implements OnInit {
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     console.log(date);
+    console.log(events);
   }
 
 }

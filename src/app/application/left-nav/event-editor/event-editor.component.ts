@@ -17,13 +17,14 @@ export class EventEditorComponent implements OnInit {
     const value = form.value;
 
     const name = value.name;
-    const from = value.from;
-    const to = value.to;
+    const from_date = value.from_date;
+    const from_time = value.from_time;
+    const to_date = value.to_date;
+    const to_time = value.to_time;
     const reccurence = value.reccurence;
     const description = value.description;
 
-    console.log(name,from, to,reccurence, description );
-
+    console.log(name, from_date, from_time, to_date, to_time, reccurence, description );
 
   }
 

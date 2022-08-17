@@ -14,10 +14,6 @@ export class JsonServerService {
     return this.http.get<User[]>(this.apiUrl);
   }
 
-  getEvents(): Observable<UserEvent[]>{
-    return this.http.get<UserEvent[]>(this.apiUrl);
-  }
-
   constructor(private http: HttpClient){}
 
   ngOnInit(): void {

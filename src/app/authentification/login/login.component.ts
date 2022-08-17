@@ -1,8 +1,11 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+
 import { AuthentificationService } from '../authentification.service';
-import { SignupService } from '../sign-up/sign-up.service';
-import { LoginService } from './login.service';
+import { JsonServerService } from '../../json-server-service/json-server.service';
+import { User } from 'src/app/json-server-service/user';
+
 
 @Component({
   selector: 'app-login',
@@ -11,16 +14,27 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
 
-  logged_in= this.auth.isAuth;
-  login_status = this.auth.Login_pannel;
+  isAuth= this.auth.isAuth;
 
-  constructor(private auth: AuthentificationService, private login: LoginService, private sign_up: SignupService) { }
+  user_Id: number = 0;
+  users: User[] = [];
+
+  constructor(private auth: AuthentificationService,
+    private json: JsonServerService,
+    private router: Router,
+    private route: ActivatedRoute) { }
+
 
   ngOnInit(): void {
-    this.auth.loginStatusUpdated.subscribe((login: boolean) => this.login_status = login);
+    this.auth.isAuthStatusUpdated.subscribe((isAuth: boolean) => this.isAuth = isAuth);
+
+    this.json.getUsers().subscribe((user: User[]) => this.users = user);
+
+
   }
 
-  onClickLogin_login(form: NgForm){
+  authUser(form: NgForm){
+
     const value = form.value;
 
     const username = value.username;
@@ -31,31 +45,20 @@ export class LoginComponent implements OnInit {
     console.log("password " + password);
     console.log("remember: " + remember);
 
-    this.auth.Login_pannel = !this.auth.Login_pannel;
-    this.auth.Signup_pannel = false;
-    this.auth.isAuth = true;
+    for(let i = 0; i < this.users.length; i++){
+      console.log(i, this.users[i].username);
 
+      if(username == this.users[i].username && password == this.users[i].password){
+        this.auth.isAuth = true;
+        console.log( this.auth.isAuth);
+
+        const user_Id: number = this.users[i].id;
+        this.user_Id = user_Id;
+        this.router.navigate(['main']);
+        console.log("Id: " + this.user_Id);
+      }
+    }
     this.auth.isAuthStatusUpdated.emit(this.auth.isAuth);
-    this.auth.loginStatusUpdated.emit(this.auth.Login_pannel);
-    this.auth.signupStatusUpdated.emit(this.auth.Signup_pannel);
-
-    console.log(" \n onClickLogin_login()");
-    console.log("Status isAuth: " + this.auth.isAuth);
-    console.log("Login: " + this.auth.Login_pannel);
-    console.log("Sign-up: " + this.auth.Signup_pannel);
-  }
-
-  onClickSignup_login(){
-   this.auth.Signup_pannel = !this.auth.Signup_pannel;
-   this.auth.Login_pannel = false;
-
-   this.auth.signupStatusUpdated.emit(this.auth.Signup_pannel);
-   this.auth.loginStatusUpdated.emit(this.auth.Login_pannel);
-
-   console.log(" \n onClickSignup_login()");
-   console.log("Status isAuth: " + this.auth.isAuth);
-   console.log("Login: " + this.auth.Login_pannel);
-   console.log("Sign-up: " + this.auth.Signup_pannel);
-  }
+   }
 
 }

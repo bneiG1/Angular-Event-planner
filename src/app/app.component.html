@@ -1,25 +1,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-4 ">
-            <app-authentification>
-            </app-authentification>
+            <router-outlet></router-outlet>
         </div>
     </div>
 </div>
 
-<div class="container-fluid" *ngIf="isAuth == true">
-    <div class="row">
-        <div class="col-ms-12 bg-light ">
-            <app-top-nav></app-top-nav>
-        </div>
-
-        <div class="col-3 bg-light ">
-            <app-left-nav></app-left-nav>
-        </div>
-
-        <div class="col-9 bg-light ">
-            <app-right-content></app-right-content>
-        </div>
-
-    </div>
+<div class="container-fluid">
+    <router-outlet></router-outlet>
 </div>
