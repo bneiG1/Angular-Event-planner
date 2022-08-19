@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CalendarView, CalendarEvent  } from 'angular-calendar';
 import { endOfDay, startOfDay, startOfHour } from 'date-fns';
+import { AuthentificationService } from '../../../authentification/authentification.service';
 import { UserEvent } from 'src/app/json-server-service/user-event';
 import { JsonServerService } from '../../../json-server-service/json-server.service';
 import { User } from '../../../json-server-service/user';
@@ -16,12 +17,16 @@ export class CalendarComponent implements OnInit {
 
   users: User[] = [];
   users_events: UserEvent[] = [];
+  user_events: UserEvent[] = this.calendar.user_events;
 
-  events: CalendarEvent[] = this.calender.getEvents();
+  events: CalendarEvent[] = [];
 
   viewDate: Date = new Date();
+
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
+
+
 
   // events: CalendarEvent[] = [
   //   {
@@ -47,14 +52,20 @@ export class CalendarComponent implements OnInit {
   //   }
   // ]
 
-  constructor(private json: JsonServerService, private calender: CalendarService) {
-    this.json.getUsers().subscribe((user: User[]) => this.users = user);
-    this.json.getEvents().subscribe((users_events: UserEvent[]) => this.users_events = users_events);
+  constructor(private json: JsonServerService, private calendar: CalendarService, private auth: AuthentificationService) {
    }
 
   ngOnInit(): void {
-  }
+    this.json.getUsers().subscribe((user: User[]) => this.users = user);
+    this.json.getEvents().subscribe((users_events: UserEvent[]) => this.users_events = users_events);
 
+    for(let i = 0; i < this.events.length; i++){
+      if(this.users_events[i].user_id == this.auth.User_ID){
+        this.user_events.push(this.users_events[i]);
+        this.user_events.filter((e) => e.id == this.user_events[i].id);
+      }
+    }
+  }
 
   setView(view: CalendarView) {
     this.view = view;

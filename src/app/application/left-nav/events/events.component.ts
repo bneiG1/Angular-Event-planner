@@ -3,7 +3,6 @@ import { JsonServerService } from '../../../json-server-service/json-server.serv
 import { UserEvent } from '../../../json-server-service/user-event';
 import { User } from '../../../json-server-service/user';
 import { AuthentificationService } from '../../../authentification/authentification.service';
-import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -18,7 +17,7 @@ export class EventsComponent implements OnInit {
 
   events: UserEvent[] = [];
   users: User[] = [];
-  user_events: UserEvent[] = [];
+  user_events: UserEvent[] = this.json.getUserEvents();
 
 
    newUserEvent: UserEvent = {
@@ -33,27 +32,31 @@ export class EventsComponent implements OnInit {
     description: ""
    }
 
-
-
    user_id: number = 0;
 
+  constructor(private json: JsonServerService, private auth: AuthentificationService) {
 
-  constructor(private json: JsonServerService, private auth: AuthentificationService, private http: HttpClient) { }
+  }
 
   ngOnInit(): void {
     this.json.getUsers().subscribe((user: User[]) => this.users = user);
     this.json.getEvents().subscribe((events: UserEvent[]) => this.events = events);
+    //  this.json.getEvents().subscribe((events: UserEvent[]) => this.user_events = events);
 
-    console.log(this.auth.User_ID)
-
-    for(let i = 0; i <= this.events.length; i++){
-      if(this.events[i].user_id == this.auth.User_ID){}
+     for(let i = 0; i < this.events.length; i++){
+      if(this.events[i].user_id == this.auth.User_ID){
+        // console.log(this.events[i]);
         this.user_events.push(this.events[i]);
+        this.user_events.filter((e) => e.id == this.user_events[i].id);
+
       }
+
+    }
   }
 
   showForm(){
     this.event_editor = !this.event_editor
+      console.log(this.user_events);
   }
 
   DeleteEvent(event: UserEvent){

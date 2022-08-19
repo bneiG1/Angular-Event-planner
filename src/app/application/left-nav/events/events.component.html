@@ -28,7 +28,7 @@
         <hr>
     </form>
 
-    <div class="list-group list-group-flush border-bottom scrollarea position-relative" *ngFor="let event of events">
+    <div class="list-group list-group-flush border-bottom scrollarea position-relative" *ngFor="let event of user_events">
         <a class="list-group-item list-group-item-action active py-3 lh-sm col" aria-current="true ">
             <div class="d-flex w-100 align-items-center justify-content-between">
                 <button class="btn btn-outline-danger position-absolute top-0 end-0 mt-n1" (click)="DeleteEvent(event)">X</button>

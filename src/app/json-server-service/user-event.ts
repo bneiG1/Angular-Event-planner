@@ -1,6 +1,6 @@
 export interface UserEvent{
-  id: number | string;
-  user_id: number | string;
+  id: number;
+  user_id: number;
   name: string;
   from_date: string;
   from_time: string;

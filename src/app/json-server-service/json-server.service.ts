@@ -18,6 +18,9 @@ export class JsonServerService {
    apiUrl_users = 'http://localhost:5000/users';
    apiUrl_users_events = 'http://localhost:5000/events';
 
+   events: UserEvent[] = [];
+   user_events: UserEvent[] = [];
+
   constructor(private http: HttpClient, private auth: AuthentificationService){}
 
   ngOnInit(): void {
@@ -29,6 +32,20 @@ export class JsonServerService {
 
   getEvents(): Observable<UserEvent[]>{
     return this.http.get<UserEvent[]>(this.apiUrl_users_events);
+  }
+
+  getUserEvents(): UserEvent[]{
+
+    this.http.get<UserEvent[]>(this.apiUrl_users_events).subscribe((events: UserEvent[]) => this.events = events);
+
+    for(let i = 0; i < this.events.length; i++){
+      if(this.events[i].user_id == this.auth.User_ID){
+        console.log(this.events[i]);
+        this.user_events.push(this.events[i]);
+      }
+   }
+   return this.user_events;
+
   }
 
   createEvent(event: UserEvent):  Observable<UserEvent>{
