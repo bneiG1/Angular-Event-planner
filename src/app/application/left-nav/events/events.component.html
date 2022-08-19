@@ -1,17 +1,43 @@
-<div class="d-flex flex-column align-items-stretch flex-shrink-0 scrollable bg-light">
+<div class="d-flex flex-column align-items-stretch flex-shrink-0 scrollable bg-light position-relative">
+    <h1><b>Events</b></h1>
 
-    <a class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom ">
-        <svg class="bi pe-none me-2 " width="30 " height="24 "><use xlink:href="#bootstrap "></use></svg>
-        <span class="fs-5 fw-semibold ">Events</span>
-    </a>
+    <button class="btn btn-info position-absolute top-0 end-0" (click)="showForm()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg> Add event</button>
+    <hr>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm" *ngIf="event_editor">
 
-    <div class="list-group list-group-flush border-bottom scrollarea " *ngFor="let user of users">
-        <a class="list-group-item list-group-item-action active py-3 lh-sm " aria-current="true ">
-            <div class="d-flex w-100 align-items-center justify-content-between ">
-                <strong class="mb-1 "> {{user.username}} </strong>
-                <small>{{user.email}}</small>
+        <label class="form-label">Name of the event: </label><br>
+        <input class="form-control" type="text" id="name" name="name" ngModel required><br>
+
+        <label class="form-label">Start from: </label><br>
+        <input class="form-control" type="date" id="from_date" name="from_date" ngModel required><br>
+        <input class="form-control" type="time" id="from_time" name="from_time" ngModel required><br>
+
+        <label class="form-label">End in: </label><br>
+        <input class="form-control" type="date" id="to_date" name="to_date" ngModel required><br>
+        <input class="form-control" type="time" id="to_time" name="to_time" ngModel required><br>
+
+        <input class="form-check-input" type="checkbox" id="reccurence" name="reccurence" value="true" ngModel>
+        <label class="form-check-label" for="reccurence"> Recurence </label><br>
+
+        <label>Description: </label><br>
+        <textarea class="form-control" id="description" name="description" required ngModel></textarea><br>
+
+        <button class="btn btn-success" type="submit">Submit</button>
+        <hr>
+    </form>
+
+    <div class="list-group list-group-flush border-bottom scrollarea position-relative" *ngFor="let event of events">
+        <a class="list-group-item list-group-item-action active py-3 lh-sm col" aria-current="true ">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+                <button class="btn btn-outline-danger position-absolute top-0 end-0 mt-n1" (click)="DeleteEvent(event)">X</button>
+                <strong class="mb-1 "> {{event.name}} </strong>
+                <small class="p-2 position-absolute bottom-0 start-0"><b>from:</b> {{event.from_date}}{{event.from_time}}</small><br>
+                <small class="p-2 position-absolute bottom-0 end-0"><b>to:</b> {{event.to_date}}{{event.to_time}}</small>
             </div>
-            <div class="col-10 mb-1 small ">{{user.password}}</div>
+            <div class="col-10 mb-1 small ">{{event.description}}</div>
         </a>
+
     </div>
 </div>

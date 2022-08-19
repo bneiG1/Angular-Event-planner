@@ -7,13 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftNavComponent implements OnInit {
 
-  event_editor: boolean = false;
-
-  showForm(){
-    this.event_editor = !this.event_editor
-  }
-
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit(): void {
   }

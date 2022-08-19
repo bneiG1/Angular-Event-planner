@@ -20,7 +20,6 @@ import { EventsComponent } from './application/left-nav/events/events.component'
 import { AuthentificationService } from './authentification/authentification.service';
 import { LoginService } from './authentification/login/login.service';
 import { SignupService } from './authentification/sign-up/sign-up.service';
-import { EventEditorComponent } from './application/left-nav/event-editor/event-editor.component';
 import { JsonServerService } from './json-server-service/json-server.service';
 import { AppRoutingModule } from './app-routing.module';
 import { ApplicationComponent } from './application/application.component';
@@ -37,7 +36,6 @@ import { CalendarService } from './application/right-content/calendar/calendar.s
     LoginComponent,
     SignUpComponent,
     EventsComponent,
-    EventEditorComponent,
     ApplicationComponent
 
   ],
@@ -57,7 +55,7 @@ import { CalendarService } from './application/right-content/calendar/calendar.s
 
   ],
 
-  providers: [AuthentificationService, LoginService, SignupService, JsonServerService, CalendarService],
+  providers: [AuthentificationService, LoginService, SignupService, JsonServerService, CalendarService] ,
   bootstrap: [AppComponent]
 })
 export class AppModule { }

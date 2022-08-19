@@ -1,29 +1,13 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { LoginService } from './login/login.service';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthentificationService {
 
-  isAuthStatusUpdated = new EventEmitter<boolean>();
-
-  isAuth: boolean = false;
-
-  username="";
-  password="";
-
-  // temporar
-  temp_username: string = "Doru Aleatoru";
-  temp_password: string = "12345";
+  User_ID: number = 0;
 
   constructor(){}
 
   ngOnInit(): void {
-
-    this.isAuthStatusUpdated.subscribe((isAuth: boolean) => this.isAuth = isAuth);
-
-
-    console.log(" \n AuthentificationService");
-    console.log("Status isAuth: " + this.isAuth);
   }
 
 }

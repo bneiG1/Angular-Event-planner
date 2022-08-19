@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <form (ngSubmit)="onClickSignup_signup(signup)" #signup="ngForm" class="shadow p-3 bg-light rounded
+    <form (ngSubmit)="onClickSignup_signup(signup)" #signup="ngForm" class="shadow-lg p-3 bg-light rounded
     position-absolute top-50 start-50 translate-middle
     border border-2 p-2 border-opacity-10">
         <h1 class="mb-3 fw-normal">Please Sign in</h1>
@@ -10,7 +10,7 @@
         </div>
         <br>
         <div class="form-floating">
-            <input type="email" class="form-control" placeholder="name@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" id="email" name="email" ngModel required>
+            <input type="email" class="form-control" placeholder="name@example.com" id="email" name="email" ngModel required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" [email]="true">
             <label for="floatingInput">Email address</label>
         </div>
         <br>

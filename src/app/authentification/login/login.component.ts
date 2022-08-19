@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { AuthentificationService } from '../authentification.service';
 import { JsonServerService } from '../../json-server-service/json-server.service';
 import { User } from 'src/app/json-server-service/user';
+import { LoginService } from './login.service';
 
 
 @Component({
@@ -14,26 +15,26 @@ import { User } from 'src/app/json-server-service/user';
 })
 export class LoginComponent implements OnInit {
 
-  isAuth= this.auth.isAuth;
-
-  user_Id: number = 0;
   users: User[] = [];
+
+
 
   constructor(private auth: AuthentificationService,
     private json: JsonServerService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private login: LoginService) { }
 
 
   ngOnInit(): void {
-    this.auth.isAuthStatusUpdated.subscribe((isAuth: boolean) => this.isAuth = isAuth);
 
     this.json.getUsers().subscribe((user: User[]) => this.users = user);
 
-
   }
 
-  authUser(form: NgForm){
+    authUser(form: NgForm){
+
+    const username_input = document.getElementById('username');
+    const password_input = document.getElementById('password');
 
     const value = form.value;
 
@@ -48,17 +49,26 @@ export class LoginComponent implements OnInit {
     for(let i = 0; i < this.users.length; i++){
       console.log(i, this.users[i].username);
 
-      if(username == this.users[i].username && password == this.users[i].password){
-        this.auth.isAuth = true;
-        console.log( this.auth.isAuth);
+      if(username == this.users[i].username && password == this.users[i].password && username_input != null){
 
-        const user_Id: number = this.users[i].id;
-        this.user_Id = user_Id;
+
+        this.auth.User_ID = this.users[i].id;
+        this.login.redundant_USER_ID = this.users[i].id;
+
+        username_input.classList.add('is-valid');
+
         this.router.navigate(['main']);
-        console.log("Id: " + this.user_Id);
+        console.log("Id: " + this.auth.User_ID);
+
+
+      }
+      if(username_input != null && username != this.users[i].username){
+        username_input.classList.add('is-invalid');
+      }
+      if(password_input != null && password != this.users[i].password){
+        password_input.classList.add('is-invalid');
       }
     }
-    this.auth.isAuthStatusUpdated.emit(this.auth.isAuth);
    }
 
 }

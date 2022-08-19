@@ -1,6 +1,3 @@
-import { CalendarEvent } from "angular-calendar";
-import { UserEvent } from "./user-event";
-
 export interface User{
   id: number;
   first_name: string;
@@ -8,5 +5,4 @@ export interface User{
   username: string;
   email: string;
   password: string;
-  events: UserEvent[];
 }

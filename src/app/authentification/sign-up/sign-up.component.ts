@@ -1,10 +1,17 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { JsonServerService } from '../../json-server-service/json-server.service';
+import { User } from '../../json-server-service/user';
 import { AuthentificationService } from '../authentification.service';
-import { LoginService } from '../login/login.service';
-import { SignupService } from './sign-up.service';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  }),
+};
 
 @Component({
   selector: 'app-sign-up',
@@ -14,27 +21,70 @@ import { SignupService } from './sign-up.service';
 
 export class SignUpComponent implements OnInit {
 
-  constructor(private auth: AuthentificationService, private router: Router) { }
+  users: User[] = [];
+
+  newUser: User = {
+
+    id: 0,
+    first_name: "",
+    last_name: "",
+    username: "",
+    email: "",
+    password: "",
+  }
+
+  constructor(private auth: AuthentificationService, private json: JsonServerService, private router: Router, private http: HttpClient) {
+    this.json.getUsers().subscribe((user: User[]) => this.users = user);
+  }
 
   ngOnInit(): void {
   }
 
 
   onClickSignup_signup(form: NgForm){
+
+    const username_input = document.getElementById('username');
+    const email_input = document.getElementById('email');
+    const password_input = document.getElementById('password');
+    const re_password_input = document.getElementById('re_password');
+
     const value = form.value;
 
-    const username = value.username;
-    const email = value.email;
-    const password = value.password;
-    const re_password = value.re_password;
+    const pattern = "^[A-Za-z0-9]+@[a-z]+\.[a-z]{2,3}";
 
-    console.log("username: " + username);
-    console.log("email: " + email);
-    console.log("password " + password);
-    console.log("re_password: " + re_password);
+    for(let i = 1; i <= this.users.length + 1; i++){
+      this.newUser.id = i;
+    }
 
-    console.log(" \n onClickSignup_signup()");
-    console.log("Status isAuth: " + this.auth.isAuth);
+    for(let i = 0; i < this.users.length; i++){
+
+      if(value.username == this.users[i].username && username_input != null){
+        username_input.classList.add('is-invalid');
+      }else if(value.username != this.users[i].username && username_input != null) {
+        username_input.classList.add('is-valid');
+        this.newUser.username = value.username;
+      }
+      if(value.email == this.users[i].email && email_input != null || !value.email.match(pattern) && email_input != null ){
+        email_input.classList.add('is-invalid');
+      }else if(value.email != this.users[i].email && email_input != null || value.email.match(pattern) && email_input != null ) {
+        email_input.classList.add('is-valid');
+        this.newUser.email = value.email;
+      }
+
+    }
+
+    if(value.password != value.re_password && password_input != null && re_password_input != null){
+      password_input.classList.add('is-invalid');
+      re_password_input.classList.add('is-invalid');
+    }else if(value.password == value.re_password && password_input != null && re_password_input != null) {
+      password_input.classList.add('is-valid');
+      re_password_input.classList.add('is-valid');
+      this.newUser.password = value.password;
+    }
+
+    this.http.post<User>(this.json.apiUrl_users, this.newUser, httpOptions).subscribe((newUser: User) => {this.newUser = newUser; console.log(this.newUser)});;
+
+
     this.router.navigate(['login']);
 
   }
