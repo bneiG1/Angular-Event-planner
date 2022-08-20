@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { AppComponent } from './app.component';
 import { TopNavComponent } from './application/top-nav/top-nav.component';
@@ -46,12 +49,14 @@ import { CalendarService } from './application/right-content/calendar/calendar.s
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    FlatpickrModule.forRoot(),
+    NgbModalModule,
+    BrowserAnimationsModule,
 
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
-      BrowserAnimationsModule
 
   ],
 

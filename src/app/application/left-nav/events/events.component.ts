@@ -4,6 +4,7 @@ import { UserEvent } from '../../../json-server-service/user-event';
 import { User } from '../../../json-server-service/user';
 import { AuthentificationService } from '../../../authentification/authentification.service';
 import { NgForm } from '@angular/forms';
+import { CalendarService } from '../../right-content/calendar/calendar.service';
 
 @Component({
   selector: 'app-events',
@@ -34,24 +35,13 @@ export class EventsComponent implements OnInit {
 
    user_id: number = 0;
 
-  constructor(private json: JsonServerService, private auth: AuthentificationService) {
+  constructor(private json: JsonServerService, private auth: AuthentificationService, private calendar: CalendarService) {
 
   }
 
   ngOnInit(): void {
     this.json.getUsers().subscribe((user: User[]) => this.users = user);
     this.json.getEvents().subscribe((events: UserEvent[]) => this.events = events);
-    //  this.json.getEvents().subscribe((events: UserEvent[]) => this.user_events = events);
-
-     for(let i = 0; i < this.events.length; i++){
-      if(this.events[i].user_id == this.auth.User_ID){
-        // console.log(this.events[i]);
-        this.user_events.push(this.events[i]);
-        this.user_events.filter((e) => e.id == this.user_events[i].id);
-
-      }
-
-    }
   }
 
   showForm(){
@@ -60,7 +50,7 @@ export class EventsComponent implements OnInit {
   }
 
   DeleteEvent(event: UserEvent){
-    this.json.deleteEvent(event).subscribe(() => this.events = this.events.filter((e) => e.id !== event.id));
+    this.json.deleteEvent(event).subscribe(() => this.user_events = this.user_events.filter((e) => e.id !== event.id));
   }
 
   onSubmit(form: NgForm){
@@ -86,11 +76,7 @@ export class EventsComponent implements OnInit {
       this.newUserEvent.reccurence,
       this.newUserEvent.description);
 
-      this.json.createEvent(this.newUserEvent).subscribe((newEvent: UserEvent) => this.events.push(newEvent));
-      this.events.filter((e) => e.id == this.newUserEvent.id);
-
-
+      this.json.createEvent(this.newUserEvent).subscribe((newEvent: UserEvent) => this.user_events.push(newEvent));
+      this.user_events.filter((e) => e.id == this.newUserEvent.id);
   }
-
-
 }

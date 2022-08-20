@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     console.log("remember: " + remember);
 
     for(let i = 0; i < this.users.length; i++){
-      console.log(i, this.users[i].username);
+      // console.log(i, this.users[i].username);
 
       if(username == this.users[i].username && password == this.users[i].password && username_input != null){
 
