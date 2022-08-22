@@ -18,7 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { LoginComponent } from './authentification/login/login.component';
 import { SignUpComponent } from './authentification/sign-up/sign-up.component';
-import { EventsComponent } from './application/events/events.component';
+
 import { AuthentificationService } from './authentification/authentification.service';
 import { LoginService } from './authentification/login/login.service';
 import { SignupService } from './authentification/sign-up/sign-up.service';
@@ -35,7 +35,6 @@ import { CalendarService } from './application/calendar/calendar.service';
     AuthentificationComponent,
     LoginComponent,
     SignUpComponent,
-    EventsComponent,
     ApplicationComponent
 
   ],

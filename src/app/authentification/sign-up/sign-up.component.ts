@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CalendarEvent } from 'angular-calendar';
 
 import { JsonServerService } from '../../json-server-service/json-server.service';
 import { User } from '../../json-server-service/user';
@@ -23,14 +24,14 @@ export class SignUpComponent implements OnInit {
 
   users: User[] = [];
 
+  newUserEvents: CalendarEvent[] = []
   newUser: User = {
 
     id: 0,
-    first_name: "",
-    last_name: "",
     username: "",
     email: "",
     password: "",
+    events: this.newUserEvents,
   }
 
   constructor(private auth: AuthentificationService, private json: JsonServerService, private router: Router, private http: HttpClient) {

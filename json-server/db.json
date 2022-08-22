@@ -2,141 +2,124 @@
   "users": [
     {
       "id": 1,
-      "first_name": "Robert",
-      "last_name": "Schwartz",
       "username": "user1",
       "email": "rob23@gmail.com",
-      "password": "pass"
+      "password": "pass",
+      "events": [
+        {
+          "title": "New event",
+          "start": "2022-08-21T21:00:00.000Z",
+          "end": "2022-08-22T20:59:59.999Z",
+          "color": {
+            "primary": "#1e90ff",
+            "secondary": "#D1E8FF"
+          },
+          "draggable": true,
+          "resizable": {
+            "beforeStart": true,
+            "afterEnd": true
+          },
+          "actions": [
+            {
+              "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
+              "a11yLabel": "Edit"
+            },
+            {
+              "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
+              "a11yLabel": "Delete"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": 2,
-      "first_name": "Lucy",
-      "last_name": "Ballmer",
       "username": "user2",
       "email": "lucyb56@gmail.com",
       "password": "pass"
     },
     {
       "id": 3,
-      "first_name": "Anna",
-      "last_name": "Smith",
       "username": "user3",
       "email": "annasmith23@gmail.com",
       "password": "pass"
     },
     {
       "id": 4,
-      "first_name": "Robert",
-      "last_name": "Brown",
       "username": "user4",
       "email": "bobbrown432@yahoo.com",
       "password": "pass"
     },
     {
       "id": 5,
-      "first_name": "Roger",
-      "last_name": "Bacon",
       "username": "user5",
       "email": "rogerbacon12@yahoo.com",
       "password": "pass"
     },
     {
       "id": 6,
-      "first_name": "",
-      "last_name": "",
       "username": "user6",
       "email": "user6@user.com",
       "password": "pass"
+    },
+    {
+      "id": 7,
+      "username": "user7",
+      "email": "user7@user.com",
+      "password": "pass",
+      "events": []
     }
   ],
   "events": [
     {
-      "id": 1,
-      "user_id": 1,
-      "from_date": "2022-08-22",
-      "from_time": "09:00",
-      "to_date": "2022-08-22",
-      "to_time": "14:00",
-      "name": "Teems Meeting33",
-      "reccurence": false,
-      "description": "Meeting33"
+      "title": "New Event",
+      "start": "2022-08-22T15:00:00.000Z",
+      "end": "2022-08-22T15:59:59.999Z",
+      "color": {
+        "primary": "#1e90ff",
+        "secondary": "#D1E8FF"
+      },
+      "draggable": true,
+      "resizable": {
+        "beforeStart": true,
+        "afterEnd": true
+      },
+      "actions": [
+        {
+          "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
+          "a11yLabel": "Edit"
+        },
+        {
+          "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
+          "a11yLabel": "Delete"
+        }
+      ],
+      "id": 1
     },
     {
-      "id": 2,
-      "user_id": 1,
-      "from_date": "2022-05-23",
-      "from_time": "09:00",
-      "to_date": "2022-05-24",
-      "to_time": "14:00",
-      "name": "Teems Meeting2",
-      "reccurence": false,
-      "description": "Meeting2"
-    },
-    {
-      "id": 5,
-      "user_id": 4,
-      "from_date": "2022-05-24",
-      "from_time": "09:00",
-      "to_date": "2022-05-29",
-      "to_time": "14:00",
-      "name": "Teems Meeting",
-      "reccurence": false,
-      "description": "Meeting"
-    },
-    {
-      "id": 6,
-      "user_id": 5,
-      "from_date": "2022-08-22",
-      "from_time": "09:00",
-      "to_date": "2022-08-22",
-      "to_time": "14:00",
-      "name": "Teems Meeting1",
-      "reccurence": false,
-      "description": "Meeting1"
-    },
-    {
-      "id": 7,
-      "user_id": 6,
-      "from_date": "2022-08-19",
-      "from_time": "21:34",
-      "to_date": "2022-08-19",
-      "to_time": "22:34",
-      "name": "Bread",
-      "reccurence": true,
-      "description": "asdasdasd"
-    },
-    {
-      "id": 10,
-      "user_id": 6,
-      "from_date": "2022-09-06",
-      "from_time": "03:35",
-      "to_date": "2022-09-07",
-      "to_time": "03:35",
-      "name": "",
-      "reccurence": true,
-      "description": "asdasd"
-    },
-    {
-      "id": 11,
-      "user_id": 6,
-      "from_date": "2022-09-01",
-      "from_time": "01:36",
-      "to_date": "2022-09-01",
-      "to_time": "03:36",
-      "name": "asdasdasd",
-      "reccurence": true,
-      "description": "asdasdasdsdsd"
-    },
-    {
-      "id": 12,
-      "user_id": 1,
-      "from_date": "2022-08-20",
-      "from_time": "18:29",
-      "to_date": "2022-08-20",
-      "to_time": "21:29",
-      "name": "Bread",
-      "reccurence": true,
-      "description": "asdasdasd"
+      "title": "New Event",
+      "start": "2022-08-22T15:00:00.000Z",
+      "end": "2022-08-22T15:59:59.999Z",
+      "color": {
+        "primary": "#1e90ff",
+        "secondary": "#D1E8FF"
+      },
+      "draggable": true,
+      "resizable": {
+        "beforeStart": true,
+        "afterEnd": true
+      },
+      "actions": [
+        {
+          "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
+          "a11yLabel": "Edit"
+        },
+        {
+          "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
+          "a11yLabel": "Delete"
+        }
+      ],
+      "id": 2
     }
   ]
 }
