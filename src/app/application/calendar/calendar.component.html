@@ -1,17 +1,19 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 p-2">
+            <!-- Left-nav -->
             <div class="d-flex flex-column align-items-stretch flex-shrink-0 scrollable bg-light position-relative">
                 <h1>
                     <b>Events</b>
-                </h1>
-                <button class="btn btn-info position-absolute top-0 end-0" (click)="addEvent()">
+
+                    <button class="btn btn-info position-absolute top-0 end-0" (click)="addEvent()">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
           </svg> Add event </button>
-                <div class="clearfix"></div>
+                    <div class="clearfix"></div>
+                </h1>
                 <hr>
-                <div *ngFor="let event of events">
+                <div *ngFor="let event of user_events">
                     <div class="container">
                         <div class="bg-warning bg-gradient bg-opacity-25 ">
                             <h2 class="modal-title p-4">
@@ -20,12 +22,12 @@
                             <h3 class="modal-title p-4">
                                 <b>From:</b>
                             </h3>
-                            <h5 class="modal-title p-4">
+                            <h4 class="modal-title p-4">
                                 <b>{{event.start}}</b>
-                            </h5>
-                            <h3 class="modal-title p-4">
+                            </h4>
+                            <h4 class="modal-title p-4">
                                 <b>To:</b>
-                            </h3>
+                            </h4>
                             <h4 class="modal-title p-4">
                                 <b>{{event.end}}</b>
                             </h4>
@@ -153,7 +155,7 @@
         </div>
         <!-- </div> -->
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-success" (click)="close()">OK</button>
+            <button type="button" class="btn btn-outline-success" (click)="close(); updateEvent(modalData!.event)">OK</button>
         </div>
     </div>
 </ng-template>

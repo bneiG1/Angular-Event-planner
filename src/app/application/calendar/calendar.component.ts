@@ -150,32 +150,78 @@ export class CalendarComponent implements OnInit{
   //   },
   // ];
 
-  events: CalendarEvent[] = [];
-  users: User[] = []
-  user: User = {
-    "id": 0,
-    "username": "",
-    "email": "",
-    "password": "",
-    "events": this.events
-  };
+  users: User[] = [];
 
-  constructor(private modal: NgbModal, private json: JsonServerService, private auth: AuthentificationService) {}
+  event: CalendarEvent = {
+    "id": 0,
+    "title": "New Event",
+    "start": new Date(),
+    "end": new Date(),
+    "color": { ...colors['blue'] },
+    "draggable": true,
+    "resizable": {
+      "beforeStart": true,
+      "afterEnd": true
+    },
+    "actions": [
+      this.actions[0],
+      this.actions[1],
+    ]
+  };
+  events: CalendarEvent[] = [];
+
+  user_events: UserEvent[] = [];
+
+  user: User = {
+   "id": 0,
+   "username": "",
+   "email": "",
+   "password": "",
+   "events": this.user_events,
+ }
+
+
+  constructor(private modal: NgbModal, private json: JsonServerService, private auth: AuthentificationService) {
+    console.log("Constructor");
+    this.json.getUsers().subscribe((users_123: User[]) => this.users = users_123);
+    console.log("Users Array");
+    console.log(this.users)
+    this.json.getEvents().subscribe((user_events_123: UserEvent[]) => this.user_events = user_events_123);
+    console.log("Events Array");
+    console.log(this.user_events)
+    this.events=this.user_events
+  }
 
   ngOnInit(): void {
-    this.json.getUsers().subscribe((users: User[]) => this.users = users);
-    this.json.getEvents().subscribe((events: CalendarEvent[]) => this.events = events);
 
-    this.user = this.users[1];
+    console.log("ngOnInit");
+    this.json.getUsers().subscribe((users_123: User[]) => this.users = users_123);
+    console.log("Users Array");
+    console.log(this.users)
+    this.json.getEvents().subscribe((user_events_123: UserEvent[]) => this.user_events = user_events_123);
+    console.log("Events Array");
+    console.log(this.user_events)
 
-    for(let i=0;i<this.users.length;i++){
-      if(this.users[i].id == this.auth.User_ID){
-        this.user = this.users[i];
-        console.log("USER: "+this.user)
-        this.events = this.user.events;
-      }
+    this.events=this.user_events
+
+    for(let i=0;i<this.user_events.length;i++){
+
+      this.events[i].id = this.user_events[i].id;
+      this.events[i].title = this.user_events[i].title;
+      this.events[i].start = startOfHour(new Date(this.user_events[i].start));
+      this.events[i].end! = endOfHour(new Date(this.user_events[i].end!));
+      this.events[i]!.color!.primary = this.user_events[i].color!.primary;
+      this.events[i]!.color!.secondary = this.user_events[i].color!.secondary;
+      this.events[i].draggable = this.user_events[i].draggable;
+      this.events[i].resizable!.beforeStart = this.user_events[i].resizable!.beforeStart;
+      this.events[i].resizable!.afterEnd = this.user_events[i].resizable!.afterEnd;
+      this.events[i].actions = this.actions;
+
+      this.events.push(this.events[i]);
+      this.events.filter((e) => e.id == this.events[i].id);
     }
-    console.log("USER: "+this.users[1])
+    console.log("Events")
+    console.log(this.events)
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -192,11 +238,8 @@ export class CalendarComponent implements OnInit{
     }
   }
 
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd,
-  }: CalendarEventTimesChangedEvent): void {
+  eventTimesChanged({event, newStart, newEnd,}: CalendarEventTimesChangedEvent): void {
+
     this.events = this.events.map((iEvent) => {
       if (iEvent === event) {
         return {
@@ -207,6 +250,7 @@ export class CalendarComponent implements OnInit{
       }
       return iEvent;
     });
+    this.json.updateEvent(event).subscribe(() => this.events = this.events.filter((e) => e.title!== event.title));
     this.handleEvent('Dropped or resized', event);
   }
 
@@ -216,34 +260,48 @@ export class CalendarComponent implements OnInit{
   }
 
   addEvent(): void {
-   const newEvent: CalendarEvent =
-   {
-    "title": "New Event",
-    "start": startOfHour(new Date()),
-    "end": endOfHour(new Date()),
-    "color": { ...colors['blue'] },
-    "draggable": true,
-    "resizable": {
-      "beforeStart": true,
-      "afterEnd": true
-    },
-    "actions": [
-      this.actions[0],
-      this.actions[1],
-    ]
-  };
+    this.json.getEvents().subscribe((user_events: UserEvent[]) => this.user_events = user_events);
+    const newEvent: CalendarEvent =
+    {
+      "id": this.user_events.length+1,
+      "title": "New Event",
+      "start":new Date(),
+      "end": new Date(),
+      "color": { ...colors['blue'] },
+      "draggable": true,
+      "resizable": {
+        "beforeStart": true,
+        "afterEnd": true
+      },
+      "actions": [
+        this.actions[0],
+        this.actions[1],
+      ]
+    };
 
     this.json.createEvent(newEvent).subscribe(() => {
-      this.events.filter((e) => e.id == newEvent.id)
       this.events.push(newEvent);
-
+      this.events.filter((e) => e.id == newEvent.id);
     });
 
+    this.events.filter((e) => e.id == newEvent.id);
+    this.json.getEvents().subscribe((user_events: UserEvent[]) => this.user_events = user_events);
 
+
+    console.log("Add Event")
+    console.log(this.events)
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {
-    this.json.deleteEvent(eventToDelete).subscribe(() => this.events = this.events.filter((e) => e.title!== eventToDelete.title));
+    this.json.deleteEvent(eventToDelete).subscribe(() => this.events = this.events.filter((e) => e.id!== eventToDelete.id));
+    console.log("Delete Event")
+    console.log(this.events)
+  }
+  updateEvent(eventToUpdate: CalendarEvent){
+    this.json.updateEvent(eventToUpdate).subscribe(() => this.events = this.events.filter((e) => e.id!== eventToUpdate.id));
+    this.events.filter((e) => e.id!== eventToUpdate.id)
+    console.log("Update Event")
+    console.log(this.events)
   }
 
   setView(view: CalendarView) {

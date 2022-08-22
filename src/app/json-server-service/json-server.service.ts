@@ -30,66 +30,6 @@ export class JsonServerService {
    apiUrl_users = 'http://localhost:5000/users';
    apiUrl_users_events = 'http://localhost:5000/events';
 
-   users: User[] = []
-   USER_ID = this.auth.User_ID;
-   events: CalendarEvent[] = [];
-   user: User = {
-    "id": 0,
-    "username": "",
-    "email": "",
-    "password": "",
-    "events": this.events,
-  }
-
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      a11yLabel: 'Edit',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edit', event);
-      },
-    },
-    {
-      label: '<i class="fas fa-fw fa-trash-alt"></i>',
-      a11yLabel: 'Delete',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      },
-    },
-  ];
-  emptyCalendarEvent: CalendarEvent[]=[{
-    "title": "New event",
-    "start": new Date(),
-    "end": new Date(),
-    "color": {
-      "primary": "#1e90ff",
-      "secondary": "#D1E8FF"
-    },
-    "draggable": true,
-    "resizable": {
-      "beforeStart": true,
-      "afterEnd": true
-    },
-    "actions": [
-      {
-        label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-        a11yLabel: 'Edit',
-        onClick: ({ event }: { event: CalendarEvent }): void => {
-          this.handleEvent('Edit', event);
-        },
-      },
-      {
-        label: '<i class="fas fa-fw fa-trash-alt"></i>',
-        a11yLabel: 'Delete',
-        onClick: ({ event }: { event: CalendarEvent }): void => {
-          this.events = this.events.filter((iEvent) => iEvent !== event);
-          this.handleEvent('Deleted', event);
-        },
-      }
-    ]
-  }]
-
    user_calendar_events: CalendarEvent[] = [];
 
    observableEvent: Observable<CalendarEvent[]> = new Observable<CalendarEvent[]>;
@@ -97,14 +37,13 @@ export class JsonServerService {
   constructor(private http: HttpClient, private auth: AuthentificationService){}
 
   ngOnInit(): void {
-    this.getUsers().subscribe((users: User[]) => this.users = users);
   }
 
   getUsers(): Observable<User[]>{
     return this.http.get<User[]>(this.apiUrl_users);
   }
-  getEvents(): Observable<CalendarEvent[]>{
-    return this.http.get<CalendarEvent[]>(this.apiUrl_users_events);
+  getEvents(): Observable<UserEvent[]>{
+    return this.http.get<UserEvent[]>(this.apiUrl_users_events);
   }
 
   getUser(User_Id: number): Observable<User>{
@@ -112,13 +51,18 @@ export class JsonServerService {
     return this.http.get<User>(user_url);
   }
 
-  createEvent(event: CalendarEvent):  Observable<CalendarEvent>{
-   return this.http.post<CalendarEvent>(this.apiUrl_users_events, event, httpOptions);
+  createEvent(event: CalendarEvent):  Observable<UserEvent>{
+   return this.http.post<UserEvent>(this.apiUrl_users_events, event, httpOptions);
   }
 
-  deleteEvent(event: CalendarEvent):  Observable<CalendarEvent>{
+  deleteEvent(event: CalendarEvent):  Observable<UserEvent>{
     const events_url = `${this.apiUrl_users_events}/${event.id}`;
-    return this.http.delete<CalendarEvent>(events_url);
+    return this.http.delete<UserEvent>(events_url);
+  }
+
+  updateEvent(event: CalendarEvent):  Observable<UserEvent>{
+    const events_url = `${this.apiUrl_users_events}/${event.id}`;
+    return this.http.patch<UserEvent>(events_url, event, httpOptions);
   }
 
 }

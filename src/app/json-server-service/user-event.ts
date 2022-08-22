@@ -1,9 +1,9 @@
-import { EventAction, EventColor } from "calendar-utils";
+import { EventAction} from "calendar-utils";
 
 export interface UserEvent<MetaType = any>{
   id?: string | number;
-  start: string;
-  end?: string;
+  start: Date;
+  end?: Date;
   title: string;
   color?: {
     primary: string,

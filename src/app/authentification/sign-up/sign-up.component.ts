@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CalendarEvent } from 'angular-calendar';
+import { UserEvent } from 'src/app/json-server-service/user-event';
 
 import { JsonServerService } from '../../json-server-service/json-server.service';
 import { User } from '../../json-server-service/user';
@@ -24,7 +25,7 @@ export class SignUpComponent implements OnInit {
 
   users: User[] = [];
 
-  newUserEvents: CalendarEvent[] = []
+  newUserEvents: UserEvent[] = []
   newUser: User = {
 
     id: 0,
