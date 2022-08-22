@@ -27,8 +27,8 @@ export class JsonServerService {
    apiUrl_users = 'http://localhost:5000/users';
    apiUrl_users_events = 'http://localhost:5000/events';
 
-   events: UserEvent[] = [];
-   user_events: UserEvent[] = [];
+   events: CalendarEvent[] = [];
+   user_events: CalendarEvent[] = [];
 
 
   //  user_calendar_event: CalendarEvent ={
@@ -50,13 +50,13 @@ export class JsonServerService {
     return this.http.get<User[]>(this.apiUrl_users);
   }
 
-  getEvents(): Observable<UserEvent[]>{
-    return this.http.get<UserEvent[]>(this.apiUrl_users_events);
+  getEvents(): Observable<CalendarEvent[]>{
+    return this.http.get<CalendarEvent[]>(this.apiUrl_users_events);
   }
 
-  getUserEvents(): UserEvent[]{
+  getUserEvents(): CalendarEvent[]{
 
-    this.http.get<UserEvent[]>(this.apiUrl_users_events).subscribe((events: UserEvent[]) => this.events = events);
+    this.http.get<CalendarEvent[]>(this.apiUrl_users_events).subscribe((events: CalendarEvent[]) => this.events = events);
 
     for(let i = 0; i < this.events.length; i++){
       if(this.events[i].user_id == this.auth.User_ID){
@@ -98,13 +98,13 @@ export class JsonServerService {
 
   // }
 
-  createEvent(event: UserEvent):  Observable<UserEvent>{
-   return this.http.post<UserEvent>(this.apiUrl_users_events, event, httpOptions);
+  createEvent(event: CalendarEvent):  Observable<CalendarEvent>{
+   return this.http.post<CalendarEvent>(this.apiUrl_users_events, event, httpOptions);
   }
 
-  deleteEvent(event: UserEvent):  Observable<UserEvent>{
+  deleteEvent(event: CalendarEvent):  Observable<CalendarEvent>{
     const events_url = `${this.apiUrl_users_events}/${event.id}`;
-    return this.http.delete<UserEvent>(events_url);
+    return this.http.delete<CalendarEvent>(events_url);
   }
 
 }

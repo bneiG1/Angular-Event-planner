@@ -1,0 +1,145 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-3 p-2">
+            <div class="d-flex flex-column align-items-stretch flex-shrink-0 scrollable bg-light position-relative">
+                <h1><b>Events</b></h1>
+                <button class="btn btn-info position-absolute top-0 end-0" (click)="addEvent()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg> Add event</button>
+                <div class="clearfix"></div>
+                <hr>
+
+                <div *ngFor="let event of events">
+                    <div class="container">
+                        <div class="bg-warning bg-gradient bg-opacity-25 ">
+                            <h2 class="modal-title p-4"><b>{{event.title}}</b></h2>
+
+                            <h3 class="modal-title p-4"><b>From:</b></h3>
+                            <h5 class="modal-title p-4"><b>{{event.start}}</b></h5>
+
+                            <h3 class="modal-title p-4"><b>To:</b></h3>
+                            <h4 class="modal-title p-4"><b>{{event.end}}</b></h4>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CALENDAR -->
+        <div class="col-md-9">
+            <div class="scrollable">
+                <div class="row text-center">
+                    <div class="col-md-1">
+                        <div class="btn-group">
+                            <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+          </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="btn-group">
+                            <div class="btn btn-success" mwlCalendarToday [(viewDate)]="viewDate"> Today </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h1>
+                            <b>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</b>
+                        </h1>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="btn-group">
+                            <div class="btn btn-primary" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month"> Month </div>
+                            <div class="btn btn-primary" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week"> Week </div>
+                            <div class="btn btn-primary" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day"> Day </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="btn-group">
+                            <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div [ngSwitch]="view">
+                    <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)"></mwl-calendar-month-view>
+                    <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)"></mwl-calendar-week-view>
+                    <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)"></mwl-calendar-day-view>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<ng-template #modalContent let-close="close">
+    <div class="bg-warning bg-gradient bg-opacity-25 ">
+        <div class="modal-header">
+            <h1 class="modal-title p-4"><b>Event action occurred</b></h1>
+            <button type="button" class="btn btn-danger" (click)="close()"><b>X</b></button>
+        </div>
+        <div class="modal-body p-4">
+            <div>
+                <h2>Action:</h2>
+                <pre>{{ modalData?.action }}</pre>
+            </div>
+            <div>
+                <h2>Event:</h2>
+                <pre>{{ modalData?.event | json }}</pre>
+            </div>
+        </div>
+
+        <!-- <div *ngFor="let event of events"> -->
+        <!-- FORM -->
+        <div *ngIf="modalData?.action == 'Edit'">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-8 border border-secondary">
+                        <div class="position-relative">
+
+
+                            <label class="form-label" for="name"><h2>Name of the event: </h2></label>
+                            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="modalData?.event!.title" (keyup)="refresh.next()" />
+                            <br>
+                            <label class="form-label" for="primary"><h2>Pin color: </h2></label>
+                            <input class="form-control form-control-color" type="color" id="primary" name="primary" [(ngModel)]="modalData?.event!.color!.primary" (change)="refresh.next()" />
+                            <br>
+                            <label class="form-label"><h2>Bouble color: </h2></label>
+                            <input class="form-control form-control-color" type="color" [(ngModel)]="modalData?.event!.color!.secondary" (change)="refresh.next()" />
+                            <br>
+                            <label class="form-label" for="from"><h2>Start from: </h2></label>
+                            <input class="form-control" type="text" id="from" name="from" mwlFlatpickr [(ngModel)]="modalData?.event!.start" (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i"
+                                placeholder="Not set" />
+                            <br>
+                            <label class="form-label" for="to"><h2>End in: </h2></label>
+                            <input class="form-control" type="text" id="to" name="to" mwlFlatpickr [(ngModel)]="modalData?.event!.end" (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true" [enableTime]="true" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i"
+                                placeholder="Not set" />
+                            <br><br><br><br>
+                            <div class="position-absolute bottom-0 end-0 p-4">
+                                <button class="btn btn-danger " (click)="deleteEvent(modalData?.event!)">Delete</button><br>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- </div> -->
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-success" (click)="close()">OK</button>
+        </div>
+    </div>
+</ng-template>

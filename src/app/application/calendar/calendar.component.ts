@@ -26,10 +26,10 @@ import {
   endOfHour,
 } from 'date-fns';
 
-import { AuthentificationService } from '../../../authentification/authentification.service';
+import { AuthentificationService } from '../../authentification/authentification.service';
 import { UserEvent } from 'src/app/json-server-service/user-event';
-import { JsonServerService } from '../../../json-server-service/json-server.service';
-import { User } from '../../../json-server-service/user';
+import { JsonServerService } from '../../json-server-service/json-server.service';
+import { User } from '../../json-server-service/user';
 import { CalendarService } from './calendar.service';
 
 
@@ -91,7 +91,7 @@ export class CalendarComponent{
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
       a11yLabel: 'Edit',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
+        this.handleEvent('Edit', event);
       },
     },
     {
@@ -195,12 +195,13 @@ export class CalendarComponent{
         title: 'New event',
         start: startOfDay(new Date()),
         end: endOfDay(new Date()),
-        color: colors['red'],
+        color: colors['blue'],
         draggable: true,
         resizable: {
           beforeStart: true,
           afterEnd: true,
         },
+        actions: this.actions,
       },
     ];
   }
