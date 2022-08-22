@@ -2,6 +2,7 @@ import { EventAction} from "calendar-utils";
 
 export interface UserEvent<MetaType = any>{
   id?: string | number;
+  user_id: string | number;
   start: Date;
   end?: Date;
   title: string;

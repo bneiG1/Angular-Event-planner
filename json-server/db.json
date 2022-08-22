@@ -4,34 +4,197 @@
       "id": 1,
       "username": "user1",
       "email": "rob23@gmail.com",
-      "password": "pass",
-      "events": [
+      "password": "pass"
+    },
+    {
+      "id": 2,
+      "username": "user2",
+      "email": "user2@user.com",
+      "password": "pass"
+    }
+  ],
+  "events": [
+    {
+      "id": 3,
+      "user_id": 1,
+      "title": "New Event3",
+      "start": "2022-08-22T21:00:00.000Z",
+      "end": "2022-08-22T21:59:59.999Z",
+      "color": {
+        "primary": "#b02107",
+        "secondary": "#D1E8FF"
+      },
+      "draggable": true,
+      "resizable": {
+        "beforeStart": true,
+        "afterEnd": true
+      },
+      "actions": [
         {
-          "title": "New event",
-          "start": "2022-08-21T21:00:00.000Z",
-          "end": "2022-08-22T20:59:59.999Z",
-          "color": {
-            "primary": "#1e90ff",
-            "secondary": "#D1E8FF"
-          },
-          "draggable": true,
-          "resizable": {
-            "beforeStart": true,
-            "afterEnd": true
-          },
-          "actions": [
-            {
-              "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
-              "a11yLabel": "Edit"
-            },
-            {
-              "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
-              "a11yLabel": "Delete"
-            }
-          ]
+          "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
+          "a11yLabel": "Edit"
+        },
+        {
+          "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
+          "a11yLabel": "Delete"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "user_id": 1,
+      "title": "New Event5",
+      "start": "2022-08-22T22:00:00.000Z",
+      "end": "2022-08-22T22:59:59.999Z",
+      "color": {
+        "primary": "#fbff1f",
+        "secondary": "#ffd1f9"
+      },
+      "draggable": true,
+      "resizable": {
+        "beforeStart": true,
+        "afterEnd": true
+      },
+      "actions": [
+        {
+          "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
+          "a11yLabel": "Edit"
+        },
+        {
+          "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
+          "a11yLabel": "Delete"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "user_id": 1,
+      "title": "New Event6",
+      "start": "2022-08-22T22:00:00.000Z",
+      "end": "2022-08-22T22:59:59.999Z",
+      "color": {
+        "primary": "#1e90ff",
+        "secondary": "#D1E8FF"
+      },
+      "draggable": true,
+      "resizable": {
+        "beforeStart": true,
+        "afterEnd": true
+      },
+      "actions": [
+        {
+          "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
+          "a11yLabel": "Edit"
+        },
+        {
+          "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
+          "a11yLabel": "Delete"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "user_id": 1,
+      "title": "New Event",
+      "start": "2022-08-14T23:00:00.000Z",
+      "end": "2022-08-14T23:59:59.999Z",
+      "color": {
+        "primary": "#1e90ff",
+        "secondary": "#D1E8FF"
+      },
+      "draggable": true,
+      "resizable": {
+        "beforeStart": true,
+        "afterEnd": true
+      },
+      "actions": [
+        {
+          "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
+          "a11yLabel": "Edit"
+        },
+        {
+          "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
+          "a11yLabel": "Delete"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "user_id": 2,
+      "title": "New Event1",
+      "start": "2022-08-22T23:28:26.147Z",
+      "end": "2022-08-22T23:28:26.147Z",
+      "color": {
+        "primary": "#ff1f1f",
+        "secondary": "#D1E8FF"
+      },
+      "draggable": true,
+      "resizable": {
+        "beforeStart": true,
+        "afterEnd": true
+      },
+      "actions": [
+        {
+          "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
+          "a11yLabel": "Edit"
+        },
+        {
+          "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
+          "a11yLabel": "Delete"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "user_id": 2,
+      "title": "New Event13",
+      "start": "2022-08-24T00:30:00.000Z",
+      "end": "2022-08-24T02:29:59.999Z",
+      "color": {
+        "primary": "#1fff75",
+        "secondary": "#D1E8FF"
+      },
+      "draggable": true,
+      "resizable": {
+        "beforeStart": true,
+        "afterEnd": true
+      },
+      "actions": [
+        {
+          "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
+          "a11yLabel": "Edit"
+        },
+        {
+          "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
+          "a11yLabel": "Delete"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "user_id": 2,
+      "title": "New Event14",
+      "start": "2022-08-13T23:38:06.892Z",
+      "end": "2022-08-13T23:38:06.892Z",
+      "color": {
+        "primary": "#8f1fff",
+        "secondary": "#edffd1"
+      },
+      "draggable": true,
+      "resizable": {
+        "beforeStart": true,
+        "afterEnd": true
+      },
+      "actions": [
+        {
+          "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
+          "a11yLabel": "Edit"
+        },
+        {
+          "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
+          "a11yLabel": "Delete"
         }
       ]
     }
-  ],
-  "events": []
+  ]
 }

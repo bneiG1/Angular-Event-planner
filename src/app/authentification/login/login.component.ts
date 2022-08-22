@@ -7,7 +7,6 @@ import { JsonServerService } from '../../json-server-service/json-server.service
 import { User } from 'src/app/json-server-service/user';
 import { LoginService } from './login.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,8 +16,6 @@ export class LoginComponent implements OnInit {
 
   users: User[] = [];
 
-
-
   constructor(private auth: AuthentificationService,
     private json: JsonServerService,
     private router: Router,
@@ -26,11 +23,8 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.json.getUsers().subscribe((user: User[]) => this.users = user);
-
   }
-
     authUser(form: NgForm){
 
     const username_input = document.getElementById('username');
@@ -42,31 +36,25 @@ export class LoginComponent implements OnInit {
     const password = value.password;
     const remember = value.remember;
 
-    console.log("username: " + username);
-    console.log("password " + password);
-    console.log("remember: " + remember);
-
     for(let i = 0; i < this.users.length; i++){
-      // console.log(i, this.users[i].username);
 
-      if(username == this.users[i].username && password == this.users[i].password && username_input != null){
-
+      if(username == this.users[i].username && password == this.users[i].password){
 
         this.auth.User_ID = this.users[i].id;
         this.login.redundant_USER_ID = this.users[i].id;
 
-        username_input.classList.add('is-valid');
+        username_input!.classList.add('is-valid');
 
         this.router.navigate(['main']);
         console.log("Id: " + this.auth.User_ID);
 
-
       }
-      if(username_input != null && username != this.users[i].username){
-        username_input.classList.add('is-invalid');
+      if(username != this.users[i].username){
+        username_input!.classList.add('is-invalid');
       }
-      if(password_input != null && password != this.users[i].password){
-        password_input.classList.add('is-invalid');
+      if(password != this.users[i].password){
+        password_input!.classList.add('is-invalid');
+        username_input!.classList.add('is-invalid');
       }
     }
    }

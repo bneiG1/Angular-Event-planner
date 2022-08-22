@@ -24,15 +24,11 @@ const httpOptions = {
 export class SignUpComponent implements OnInit {
 
   users: User[] = [];
-
-  newUserEvents: UserEvent[] = []
   newUser: User = {
-
     id: 0,
     username: "",
     email: "",
     password: "",
-    events: this.newUserEvents,
   }
 
   constructor(private auth: AuthentificationService, private json: JsonServerService, private router: Router, private http: HttpClient) {
