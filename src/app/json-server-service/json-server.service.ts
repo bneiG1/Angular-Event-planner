@@ -20,7 +20,7 @@ export class JsonServerService {
   // GET- citeste din json
   // POST- adauga in json
   // PATCH- face update la un element dupa id din json
-  // PUT si PATCH- fac cam aceleasi lucruri
+  // PUT si PATCH fac cam aceleasi lucruri
   // DELETE- sterge elementul dupa id din json
 
   apiUrl_users = 'http://localhost:5000/users';
@@ -37,6 +37,7 @@ export class JsonServerService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl_users);
   }
+
   getEvents(): Observable<UserEvent[]> {
     return this.http.get<UserEvent[]>(this.apiUrl_users_events);
   }

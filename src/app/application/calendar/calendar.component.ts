@@ -4,6 +4,7 @@ import {
   ViewChild,
   TemplateRef,
   OnInit,
+  ElementRef,
 } from '@angular/core';
 
 import {
@@ -114,7 +115,7 @@ export class CalendarComponent implements OnInit {
 
   refresh = new Subject<void>();
 
-  activeDayIsOpen: boolean = true;
+  activeDayIsOpen: boolean = false;
 
   event: CalendarEvent = {
     id: 0,
@@ -130,6 +131,7 @@ export class CalendarComponent implements OnInit {
     actions: [this.actions[0], this.actions[1]],
   };
 
+  isAuth = this.auth.User_ID;
   events: CalendarEvent[] = [];
 
   users_events: UserEvent[] = [];
@@ -141,13 +143,14 @@ export class CalendarComponent implements OnInit {
     private modal: NgbModal,
     private json: JsonServerService,
     private auth: AuthentificationService,
-    private calendar: CalendarService
+    private calendar: CalendarService,
+    private elementRef: ElementRef
   ) {}
 
   ngOnInit(): void {
     this.json.getEvents().subscribe((users_events: UserEvent[]) => {
       this.users_events = users_events;
-
+      console.log(users_events)
       for (let i = 0; i < this.users_events.length; i++) {
         if (this.users_events[i].user_id === this.auth.User_ID) {
           this.user_event = this.users_events[i];
@@ -206,14 +209,23 @@ export class CalendarComponent implements OnInit {
     });
     this.json.updateEvent(event).subscribe();
     this.handleEvent('Dropped or resized', event);
+
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
+
+    this.json.updateEvent(event).subscribe(() => this.event = event);
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
+
   }
 
   addEvent(): void {
+
+    if(this.isAuth == 0){
+      const button =  document.getElementById('addEvent');
+      button!.setAttribute('disabled','');
+    }
     let id = Number(this.users_events[this.users_events.length - 1].id) + 1;
 
     const newEvent: UserEvent = {

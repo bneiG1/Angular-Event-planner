@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { AuthentificationService } from '../authentification/authentification.service';
 
 @Component({
   selector: 'app-application',
@@ -8,12 +8,12 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class ApplicationComponent implements OnInit {
 
-  user_Id: number = 0;
+  isAuth: number = this.auth.User_ID;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private auth: AuthentificationService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {this.user_Id = +params['id']});
+
 
   }
 

@@ -70,8 +70,8 @@
       "id": 6,
       "user_id": 1,
       "title": "New Event6",
-      "start": "2022-08-22T22:00:00.000Z",
-      "end": "2022-08-22T22:59:59.999Z",
+      "start": "2022-08-30T22:00:00.000Z",
+      "end": "2022-08-30T22:59:59.999Z",
       "color": {
         "primary": "#1e90ff",
         "secondary": "#D1E8FF"
@@ -121,9 +121,9 @@
     {
       "id": 12,
       "user_id": 2,
-      "title": "New Event1",
-      "start": "2022-08-22T23:28:26.147Z",
-      "end": "2022-08-22T23:28:26.147Z",
+      "title": "New Event12",
+      "start": "2022-08-09T23:00:00.000Z",
+      "end": "2022-08-09T23:59:59.999Z",
       "color": {
         "primary": "#ff1f1f",
         "secondary": "#D1E8FF"
@@ -148,8 +148,8 @@
       "id": 13,
       "user_id": 2,
       "title": "New Event13",
-      "start": "2022-08-24T00:30:00.000Z",
-      "end": "2022-08-24T02:29:59.999Z",
+      "start": "2022-08-13T00:00:00.000Z",
+      "end": "2022-08-13T02:59:59.999Z",
       "color": {
         "primary": "#1fff75",
         "secondary": "#D1E8FF"
@@ -179,6 +179,84 @@
       "color": {
         "primary": "#8f1fff",
         "secondary": "#edffd1"
+      },
+      "draggable": true,
+      "resizable": {
+        "beforeStart": true,
+        "afterEnd": true
+      },
+      "actions": [
+        {
+          "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
+          "a11yLabel": "Edit"
+        },
+        {
+          "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
+          "a11yLabel": "Delete"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "user_id": 2,
+      "title": "New Event15",
+      "start": "2022-08-24T09:00:00.000Z",
+      "end": "2022-08-30T09:59:59.999Z",
+      "color": {
+        "primary": "#5dcb65",
+        "secondary": "#D1E8FF"
+      },
+      "draggable": true,
+      "resizable": {
+        "beforeStart": true,
+        "afterEnd": true
+      },
+      "actions": [
+        {
+          "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
+          "a11yLabel": "Edit"
+        },
+        {
+          "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
+          "a11yLabel": "Delete"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "user_id": 0,
+      "title": "TEST!@#",
+      "start": "2022-08-23T09:00:00.000Z",
+      "end": "2022-08-23T09:59:59.999Z",
+      "color": {
+        "primary": "#ff0000",
+        "secondary": "#D1E8FF"
+      },
+      "draggable": true,
+      "resizable": {
+        "beforeStart": true,
+        "afterEnd": true
+      },
+      "actions": [
+        {
+          "label": "<i class=\"fas fa-fw fa-pencil-alt\"></i>",
+          "a11yLabel": "Edit"
+        },
+        {
+          "label": "<i class=\"fas fa-fw fa-trash-alt\"></i>",
+          "a11yLabel": "Delete"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "user_id": 1,
+      "title": "New Event17",
+      "start": "2022-08-26T17:32:49.618Z",
+      "end": "2022-08-26T17:32:49.618Z",
+      "color": {
+        "primary": "#39ff1f",
+        "secondary": "#D1E8FF"
       },
       "draggable": true,
       "resizable": {

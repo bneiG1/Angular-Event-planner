@@ -6,9 +6,12 @@
         </a>
 
         <ul class="nav nav-pills">
-            <li><button class="btn btn-primary">Home</button></li>
             <li>
-                <button class="btn btn-danger" routerLink="/login">Logout</button>
+                <button class="btn btn-danger" routerLink="/login" *ngIf="isAuth != 0">Logout</button>
+                <div *ngIf="isAuth == 0">
+                    <button class="btn btn-primary" routerLink="/login">Login</button> OR
+                    <button class="btn btn-primary" routerLink="/signup">Sign-up</button>
+                </div>
             </li>
         </ul>
     </header>

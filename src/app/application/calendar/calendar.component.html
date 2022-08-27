@@ -6,7 +6,7 @@
                 <h1>
                     <b>Events</b>
 
-                    <button class="btn btn-info position-absolute top-0 end-0" (click)="addEvent()">
+                    <button class="btn btn-info position-absolute top-0 end-0" [disabled]="!isAuth" (click)="addEvent()">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus"
               viewBox="0 0 16 16">
               <path

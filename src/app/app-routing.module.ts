@@ -5,7 +5,6 @@ import { LoginComponent } from "./authentification/login/login.component";
 import { SignUpComponent } from "./authentification/sign-up/sign-up.component";
 
 const appRoutes: Routes = [{path: '', redirectTo: '/login', pathMatch: 'full'},
-
 {path: 'login', component: LoginComponent},
 {path: 'signup', component: SignUpComponent},
 {path: 'main', component: ApplicationComponent

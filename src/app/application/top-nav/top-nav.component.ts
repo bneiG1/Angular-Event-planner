@@ -8,6 +8,8 @@ import { AuthentificationService } from '../../authentification/authentification
 })
 export class TopNavComponent implements OnInit {
 
+  isAuth = this.auth.User_ID;
+
   constructor(private auth: AuthentificationService) { }
 
   ngOnInit(): void {
